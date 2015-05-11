@@ -1,0 +1,206 @@
+<div class="row">
+    <!-- header part -->
+    <div class="col-xs-12 col-md-12">
+        <a href="#/generateForMobile" class="pull-right">
+            <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>&nbsp;Back
+        </a>
+    </div>
+</div>
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="form-group col-sm-5" style="padding:0px">
+                    <select class="form-control" name="selectSurvey">
+                        <option role="presentation" value="Select Survey">Select Survey</option>
+                        <option ng-repeat="name in surveyNames">{{ name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel panel-info question-panel-container hide" style="margin-left:0px; margin-top:0px;">
+                    <div class="panel-heading">
+                        <div class="panel-title">{{ surveyName }}</div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="manual-test-question-container">
+                            <div class="manual-test-questions" ng-repeat="groupQuestion in groupQuestions">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="question-code" class="col-lg-2 col-sm-2 control-label">Question Code</label>
+                                        <div class="col-sm-2 col-md-2 col-xs-6" style="padding-right:0px;">
+                                            <input type="text" class="form-control" ng-model="groupQuestion.questionCode">
+                                        </div>
+                                        <div ng-if="groupQuestion.progAsk">
+                                            <label for="go-to" class="col-lg-2 col-sm-2 control-label">Ask</label>
+                                            <div class="col-sm-2 col-md-2 col-xs-6">
+                                                <input type="text" class="form-control" ng-model="groupQuestion.progAsk">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="question" class="col-lg-2 col-sm-3 control-label">Question</label>
+                                        <div class="col-sm-9 col-md-9 col-xs-12">
+                                            <textarea id="question-textarea" class="form-control question" rows="5" id="comment" style="width:100%" ng-model="groupQuestion.questionText"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-model="groupQuestion.selectionType">
+                                        <label for="responses" class="col-lg-2 col-sm-3 control-label">Responses</label>
+                                        <div class="col-sm-9 col-md-9 col-xs-12" ng-switch on="groupQuestion.selectionType">
+
+                                            <table class="table" ng-switch-when="StandardAttributeGrid">
+                                                <tr ng-repeat="response in groupQuestion.responses">
+                                                    <td>
+
+                                                        <div class="row">
+                                                            <div class="col-xs-1" ng-repeat="column in response.col">&nbsp;{{ column }}</div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div ng-repeat="data in response.data">
+                                                                <div class="col-xs-12" style="background-color:darkgray">{{data.value.value}}</div>
+                                                                <div class="col-xs-1" ng-repeat="radio in data.listOfRadio"><input type="radio" name="{{data.code}}" value="{{radio}}" ng-click="promptASK(groupQuestion.questionCode, $event, response.progAsk, groupQuestion.selectionType)"></div>
+                                                            </div>        
+                                                        </div>
+                                        </div>
+                                                
+
+
+                                        </td>
+                                        <td class="response-level-ask-question" ng-if="response.progAsk">
+                                            <div class="form-group">
+                                                <span class="col-sm-2 col-md-2">ASK</span>
+                                                <div class="col-sm-6 col-md-6">
+                                                    <input type="text" class="form-control" ng-model="response.progAsk">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        </table>
+
+
+                                        <table class="table" ng-switch-when="OSATGrid">
+                                            <tr ng-repeat="response in groupQuestion.responses">
+                                                <td>
+                                                    <div ng-if="response.inputType == 'radio'">
+                                                        <input type="radio" name="{{groupQuestion.questionCode}}" value="{{response.value}}" ng-click="promptASK(groupQuestion.questionCode, $event, response.progAsk, groupQuestion.selectionType)" />&nbsp; {{response.value}}
+                                                    </div>
+                                                    <div ng-if="response.inputType == 'text'">
+                                                        <input type="radio" name="{{groupQuestion.questionCode}}">
+                                                        <input type="text" name="response-option" value="{{response.inputText}}" ng-click="promptASK(groupQuestion.questionCode, $event, response.progAsk, groupQuestion.selectionType)" />
+                                                    </div>
+                                                    
+                                                    <div>
+                                                    
+                                                        <label>{{response.value}}</label>
+                                                        <div class="row">
+                                                            <div class="col-xs-1" ng-repeat="column in response.col">
+                                                                <input type="radio" name="{{response.code}}" value="{{column}}" ng-click="promptASK(groupQuestion.questionCode, $event, response.progAsk, groupQuestion.selectionType)">&nbsp;{{column}}</div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </td>
+                                                <td class="response-level-ask-question" ng-if="response.progAsk">
+                                                    <div class="form-group">
+                                                        <span class="col-sm-2 col-md-2">ASK</span>
+                                                        <div class="col-sm-6 col-md-6">
+                                                            <input type="text" class="form-control" ng-model="response.progAsk">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+
+                                        <table class="table" ng-switch-when="MultiDropDown">
+                                            <tr ng-repeat="response in groupQuestion.responses">
+                                                <td>
+                                                    <div ng-if="response.inputType == 'radio'">
+                                                    
+                                                        <input type="radio" name="{{groupQuestion.questionCode}}" value="{{response.value}}" ng-click="promptASK(groupQuestion.questionCode, $event, response.progAsk, groupQuestion.selectionType)" />&nbsp; {{response.value}}
+                                                    </div>
+                                                    
+                                                    <div ng-if="response.inputType == 'text'">
+                                                    
+                                                        <input type="radio" name="{{groupQuestion.questionCode}}" ng-click="promptASK(groupQuestion.questionCode, $event, response.progAsk, groupQuestion.selectionType)">
+                                                        <input type="text" name="response-option" value="{{response.inputText}}" />
+                                                    </div>
+                                                    <div ng-if="response.inputType == 'textarea'">
+                                                    
+                                                        <input type="radio" name="{{groupQuestion.questionCode}}" ng-click="promptASK(groupQuestion.questionCode, $event, response.progAsk, groupQuestion.selectionType)">
+                                                        <input type="text" name="response-option" value="{{response.inputText}}" />
+                                                    </div>
+                                                                                                        <div>
+                                                        <label>{{response.title}}</label>
+                                                    </div>
+                                                    <div ng-repeat="item in response.items">
+                                                        <input type="radio" name="{{response.role}}" value="{{item.role}}" ng-click="promptASK(groupQuestion.questionCode, $event, response.progAsk, groupQuestion.selectionType)" />&nbsp; {{item.item}}
+                                                    </div>
+
+                                                </td>
+                                                <td class="response-level-ask-question" ng-if="response.progAsk">
+                                                    <div class="form-group">
+                                                        <span class="col-sm-2 col-md-2">ASK</span>
+                                                        <div class="col-sm-6 col-md-6">
+                                                            <input type="text" class="form-control" ng-model="response.progAsk">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <table class="table" ng-switch-default>
+                                            <tr ng-repeat="response in groupQuestion.responses">
+                                                <td>
+                                                    <div ng-if="response.inputType == 'radio'">
+                                                        <input type="radio" name="{{groupQuestion.questionCode}}" value="{{response.valueIndex}}" ng-click="promptASK(groupQuestion.questionCode, $event, response.progAsk, groupQuestion.selectionType)" />&nbsp; {{response.value}}
+                                                    </div>
+                                                    <div ng-if="response.inputType == 'text'">
+                                                        <input type="radio" name="{{groupQuestion.questionCode}}" value="{{response.valueIndex}}" ng-click="promptASK(groupQuestion.questionCode, $event, response.progAsk, groupQuestion.selectionType)">
+                                                        <input type="text" name="response-option" value="{{response.inputText}}" />
+                                                    </div>
+                                                    <div ng-if="response.inputType == 'checkbox'">
+                                                        <input type="radio" name="{{groupQuestion.questionCode}}" value="{{response.valueIndex}}" ng-click="promptASK(groupQuestion.questionCode, $event, response.progAsk, groupQuestion.selectionType)" />&nbsp; {{response.value}}
+                                                    </div>
+                                                </td>
+                                                <td class="response-level-ask-question" ng-if="response.progAsk">
+                                                    <div class="form-group">
+                                                        <span class="col-sm-2 col-md-2">ASK</span>
+                                                        <div class="col-sm-6 col-md-6">
+                                                            <input type="text" class="form-control" ng-model="response.progAsk">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-offset-2 col-md-offset-4 col-md-4 col-sm-6">
+                            <span class="btn btn-primary glyphicon glyphicon-circle-arrow-left previous" aria-hidden="true" ng-click="previousQuestion()"></span>
+                            <span class="btn btn-primary glyphicon glyphicon-circle-arrow-right next" aria-hidden="true" ng-click="nextQuestion()"></span>
+                            <span class="btn btn-primary glyphicon glyphicon-floppy-save save pull-right" aria-hidden="true" ng-click="saveTestcase()"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    		<div class ="row"> 
+				<div class="col-sm-12" style="padding:0px">
+            		<div style="" id="save-alert" class="alert alert-danger">{{message}}</div>
+        		</div>
+        	</div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,24 @@
+<div class="loginbox" style="padding-left:15%">
+    <div class="panel panel-info panel-info-filename">
+        <div class="panel-heading">
+            <div class="panel-title">Auto Generate Testcases For Web</div>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" id="survey-name-form" role="form" ng-submit="">
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-4 control-label">Survey Name: </label>
+                    <div class="col-sm-8">
+                        <select class="form-control" ng-model='option' required ng-options='option as option for option in surveyNames' ng-change="change()">
+                        <option value="">Select Survey</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-10">
+                        <a style="width:77%" ng-click="generateTestcase(option)" class="btn btn-default">Submit</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

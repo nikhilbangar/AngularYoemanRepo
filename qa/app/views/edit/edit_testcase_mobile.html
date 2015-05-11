@@ -1,0 +1,95 @@
+<div class="col-12">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-2 col-md-2-survey-name-container" style="margin-left: 100px;">
+                <select class="form-control" ng-model="surveyName">
+                    <option role="presentation" class="dropdown-header" value="">Survey</option>
+                    <option ng-repeat="name in surveyNames">{{ name }}</option>
+                </select>
+            </div>
+            <!-- end of col-md-2 -->
+            <div class="col-md-2 col-md-2-testcase-name-container hide">
+                <select class="form-control">
+                    <option role="presentation" class="dropdown-header default">Testcases</option>
+                    <option ng-repeat="name in testcaseNames | filter:'!Survey Name'">{{ name }}</option>
+                </select>
+            </div>
+            <!-- end of col-md-2 -->
+            <div class="col-md-12 col-md-8-testcase-edit-container hide" style="margin-top:20px;">
+                <div class="loginbox">
+                    <div class="panel panel-info panel-info-edit-testcase">
+                        <div class="panel-heading">
+                            <div class="panel-title">JDPA Survey</div>
+                        </div>
+                        <div class="panel-body">
+                            
+                            <h3>Survey Name : <b class="text-muted">{{ surveyName }}</b></h3>
+                            <h4>Test Name : <b class="text-muted">{{ tc_name }}</b></h4>
+                            <br/>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Question</th>
+                                        <th>Response</th>
+                                        <th>Next</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="testcase in testcases track by $index">
+                                        <td>
+                                            <textarea class="form-control" role="question-label" role-index=" {{ $index }}">{{ testcase.question }}</textarea>
+                                        </td>
+                                        <td>
+
+                                            <div ng-switch on="isArray(testcase.response)">
+                                                <div ng-switch-when="true">
+                                                    <textarea class="form-control" role="response-value" style="margin-bottom:5px;" ng-repeat="sub_response in testcase.response track by $index">{{ sub_response }}</textarea>
+                                                </div>
+                                                <div ng-switch-when="false">
+
+                                                    <div ng-repeat="(key, value) in testcase.response track by $index">
+                                                        <div class="response-object-container">
+                                                            <div class="col-sm-6">
+                                                                <textarea class="form-control response-object-key" role="response-object-key" style="margin-bottom:5px;">{{ key }}</textarea>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <textarea class="form-control response-object-value" role="response-object-value" style="margin-bottom:5px;" ng-repeat="myValue in value track by $index">{{ myValue }}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <textarea class="form-control" role="next-question-label" ng-repeat="nextValue in testcase.next track by $index">{{ nextValue }}</textarea>
+                                        </td>
+                                        <td>                                       
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-top:25px; margin-left:25px; cursor: pointer;" ng-click="removeQuestion($index)"></span>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div id="save-alert-ForAppendQuestion" class="alert alert-danger col-sm-12" style="display:none">{{messageForAppendQn}}</div>
+                            <p class="text-center">
+                                <button type="button" class="btn btn-default" role="save" ng-click="saveEditedTestcase()">Save</button>
+                                <button type="button" class="btn btn-default" role="save" ng-click="AddRow()">Append</button>
+
+                            </p>
+                           
+                        </div>
+                    </div>
+               		 <div class="" style="margin: 10px 100px;">
+                        <div id="save-alert" class="alert alert-danger col-sm-12">{{message}}</div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end of col-md-8 -->
+        </div>
+    </div>
+</div>

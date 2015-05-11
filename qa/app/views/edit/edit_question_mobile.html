@@ -1,0 +1,72 @@
+<div class="col-12">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-2 col-md-2-survey-name-container">
+                <select class="form-control" ng-model="name" ng-change="changeSurveyNameSelect(name)" ng-options="name for name in surveyNames">
+                    <option role="presentation" class="dropdown-header" value="">Select Survey</option>
+                </select>
+                <div class="input-group" style="margin-top:10px">
+                    <span class="input-group-addon">Total questions
+                    </span>
+                    <label type="text" class="form-control" aria-describedby="basic-addon2">{{ totalNumberOfQuestions }}</label>
+                </div>
+                <div class="input-group" style="margin-top:10px">
+                    <select class="form-control" name="question-key-select" ng-model="questionKeyCode">
+                        <option value="">Select Question</option>
+                        <option ng-repeat="question in listOfQuestionKeys | filter:'!StartQuestionKey'" value="{{question}}">{{ question }}</option>
+                    </select>
+                    <span class="btn btn-primary input-group-addon" ng-disabled="!totalNumberOfQuestions" ng-click="getQuestionJSONToEdit(questionKeyCode)">Press
+                    </span>
+                </div>
+            </div>
+            <!-- end of col-md-2 -->
+            <div class="col-md-8 col-md-offset-2 question-edit-container show">
+                <div class="panel panel-info panel-question panel-info-edit-question">
+                    <div class="panel-heading">
+                        <div class="panel-title">{{ name }}</div>
+                    </div>
+
+                    <div class="panel-body">
+                        <form class="form-horizontal" name="question_generation_form" role="form" ng-submit="" novalidate>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-lg-2 col-sm-3 control-label">Question Code</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" value="{{ questionTitle }}" ng-model="questionTitle">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-lg-2 col-sm-3 control-label">Question</label>
+                                <div class="col-sm-9">
+                                    <textarea id="question" class="form-control question" rows="5" id="comment" ng-model="question" style="width:100%" required></textarea>
+                                </div>
+                            </div>
+
+                            <div id="response-container"></div>
+                            <!-- end of response-container -->
+
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <span class="btn btn-primary glyphicon glyphicon-floppy-save" aria-hidden="true" ng-click="saveQuestion()"></span>
+                                </div>
+                                <!-- end of prev next save container -->
+                            </div>
+                        </form>
+                        <!-- end of form -->
+
+                    </div>
+                    <!-- end of panel body -->
+                </div>
+                <!-- end of panel -->
+            </div>
+            <!-- end of col-md-8 -->
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-sm-12">
+        <div style="" id="save-alert" class="alert alert-danger col-sm-12">{{message}}</div>
+    </div>
+</div>

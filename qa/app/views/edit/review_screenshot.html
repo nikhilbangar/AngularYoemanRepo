@@ -1,0 +1,95 @@
+<div class="col-12">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-3 ">
+                <div class="survey-name-container hide">
+                    <select class="form-control" ng-model="surveyName">
+                        <option role="presentation" class="dropdown-header" value="">Survey</option>
+                        <option ng-repeat="name in surveyNames">{{ name }}</option>
+                    </select>
+                </div>
+                <div class="alert alert-warning no-survey-container">
+                    {{ noSurvey }}
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="testcase-container hide">
+                    <select class="form-control testcase-select" ng-model="testcaseName" ng-change="selectTestcase(testcaseName)">
+                        <option role="presentation" class="dropdown-header default" value="">Testcases</option>
+                        <option ng-repeat="name in testcaseNames | filter:'!Survey Name'">{{ name }}</option>
+                    </select>
+                </div>
+                <div class="alert alert-warning no-testcase-container hide">
+                    {{ noTestcase }}
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-4 config-container hide">
+                <div class="test-data-container">
+                    <div class="btn-group" role="group" aria-label="platforms">
+                        <button type="button" class="btn btn-default" ng-repeat="platform in platforms" ng-click="getDeviceDataByPlatform(platform)">{{ platform }}</button>
+                    </div>
+                </div>
+                <div class="alert alert-warning text-center no-platform hide">{{ mobileConfigMessage }}</div>
+                <div class="device-data-container hide">
+                    <table class="table table-bordered panel-collapse ">
+                        <thead>
+                            <tr>
+                                <th>Device Details</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="device in devices track by $index">
+                                <td>{{ device.Device }}</td>
+                                <td>
+                                    <button name="screenshot-button" class="btn btn-primary" ng-click="review(device.ImgDir)">Review</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="alert alert-warning text-center no-device-info hide">{{ noDevice }}</div>
+            </div>
+            <div class="col-md-8">
+                <div class="screenshot-container hide">
+                    <div class="panel panel-info panel-info-mobile">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <label>Survey Name : {{ surveyName }}</label>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="tested-screenshot">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="testcase-name">Test Name :</label>
+                                    </div>
+                                    <div class="col-md-8">{{ testcaseName }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="question-code">Question Code :</label>
+                                    </div>
+                                    <div class="col-md-8">{{ questionCode }}</div>
+                                </div>
+                                <div class="thumbnail" style="overflow:auto">
+                                    <img ng-src="{{screenshotPath}}" style="max-height:632px">
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-4 col-md-offset-4 col-sm-10 col-xs-offset-4">
+                                        <span class="btn btn-primary glyphicon glyphicon-circle-arrow-left previous" aria-hidden="true" ng-click="previousScreenshot(testcaseName)"></span>
+                                        <span class="btn btn-primary glyphicon glyphicon-circle-arrow-right next" aria-hidden="true" ng-click="nextScreenshot(testcaseName)"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-warning text-center no-screenshot">{{ mobileScreenshotMessage }}</div>
+            </div>
+        </div>
+    </div>
+</div>

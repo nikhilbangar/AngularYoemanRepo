@@ -1,0 +1,203 @@
+<div class="col-12">
+    <div class="jumbotron">
+        <div class="row" ng-show="run_button_hide">
+            <div class="col-md-3 col-md-2-survey-name-container">
+                <select class="form-control">
+                    <option role="presentation" class="dropdown-header">Select Survey</option>
+                    <option ng-repeat="name in surveyNames track by $index">{{ name }}</option>
+                </select>
+            </div>
+            <!-- end of col-md-2 -->
+
+            <div class="col-md-12 show" style="margin-top:10px;">
+
+                <button class="btn btn-primary btn-web" type="button" data-toggle="collapse" data-target="#collapseWebPanel" aria-expanded="false" aria-controls="collapseWebPanel">Web</button>
+
+                <div id="collapseWebPanel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
+                    <div class="panel-body">
+                        <div class="col-sm-5">
+                            <div class="panel panel-info panel-info-web testcase-container">
+                                <div class="panel-heading">
+                                    <div class="panel-title">
+                                        Testcases
+                                        <div class="pull-right">
+                                            <input type="checkbox" name="all-testcase-checkbox"> All
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="testcaseNamesContainer" style="max-height:222px; overflow:auto;">
+                                        <div ng-repeat="testcaseName in testcaseNames | filter:'!Survey Name' track by $index">
+                                            <input type="checkbox" value="{{ testcaseName }}"> {{ testcaseName }}
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+                            <!-- end of Testcases panel -->
+                        </div>
+                        
+                        <!-- end of col-md-4 -->
+                        <div class="col-sm-7">
+                            <div class="panel panel-info panel-info-web">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Web Configuration</div>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-2 control-label">DriverType</label>
+                                            <div class="col-sm-4">
+                                                <select class="form-control" name="DriverType-select">
+                                                    <option value="webDriver">WebDriver</option>
+                                                    <option value="grid">GRID</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="web-js-error-checkbox"> JavaScript-Error
+                                            </div>
+                                        </div>
+
+                                        <div class="table-responsive" style="overflow:auto">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Platform</th>
+                                                        <th colspan="4">Browser</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <div class="input-group" id="text-type">
+                                                                <span class="input-group-addon"><input type="radio" class="web-platform-mac" name="web-platform" ng-model="web_platform" value="MAC"> <input type="checkbox" name="web-platform-checkbox" value="MAC" class="hide">
+                                                        </span>
+                                                                <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>MAC</label>
+                                                            </div>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group" id="text-type">
+                                                                <span class="input-group-addon"><input type="checkbox" role="web-browser-name" name="web-mac-browser"  value="safari">
+                                                        </span>
+                                                                <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>Safari</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="input-group" id="text-type">
+                                                                <span class="input-group-addon"><input type="checkbox" role="web-browser-name" name="web-mac-browser"  value="firefox">
+                                                        </span>
+                                                                <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>Firefox</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="input-group" id="text-type">
+                                                                <span class="input-group-addon"><input type="checkbox" role="web-browser-name" name="web-mac-browser"  value="chrome">
+                                                        </span>
+                                                                <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>Chrome</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <div class="input-group" id="text-type">
+                                                                <span class="input-group-addon"><input type="radio" class="web-platform-linux" name="web-platform" ng-model="web_platform" value="LINUX"><input type="checkbox" name="web-platform-checkbox" value="LINUX" class="hide">
+                                                        </span>
+                                                                <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>LINUX</label>
+                                                            </div>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group" id="text-type">
+                                                                <span class="input-group-addon"><input type="checkbox" role="web-browser-name" name="web-linux-browser"  value="firefox">
+                                                        </span>
+                                                                <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>Firefox</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="input-group" id="text-type">
+                                                                <span class="input-group-addon"><input type="checkbox" role="web-browser-name" name="web-linux-browser"  value="chrome">
+                                                        </span>
+                                                                <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>Chrome</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <div class="input-group" id="text-type">
+                                                                <span class="input-group-addon"><input type="radio" class="web-platform-win7" name="web-platform" ng-model="web_platform" value="WINDOWS"><input type="checkbox" name="web-platform-checkbox" value="WINDOWS" class="hide">
+                                                        </span>
+                                                                <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>WIN8.1</label>
+                                                            </div>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group" id="text-type">
+                                                                <span class="input-group-addon"><input type="checkbox" role="web-browser-name" name="web-win7-browser" value="iexplore">
+                                                        </span>
+                                                                <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>IE-11</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="input-group" id="text-type">
+                                                                <span class="input-group-addon"><input type="checkbox" role="web-browser-name" name="web-win7-browser"  value="firefox">
+                                                        </span>
+                                                                <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>Firefox</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="input-group" id="text-type">
+                                                                <span class="input-group-addon"><input type="checkbox" role="web-browser-name" name="web-win7-browser"  value="chrome">
+                                                        </span>
+                                                                <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>Chrome</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- end of responsive table -->
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+
+                                        <center>
+                                            <button type="button" class="btn btn-default" ng-click="save_web_configuration()">Save</button>
+                                        </center>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- end of panel info -->
+                        </div>
+                    </div>
+                </div>
+                <!-- end of web panel  -->
+            </div>
+            <!-- end of col-md-10 -->
+        </div>
+        <!-- end of row -->
+        <div class="row" ng-hide="run_button_hide">
+            <div class="col-xs-12 col-md-12 btn-back">
+                <a ng-click="showConfigurationPanel()" class="pull-right"><span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>&nbsp;Back</a>
+            </div>
+            <div class="panel panel-info panel-info-run">
+                <div class="panel-heading">
+                    <div class="panel-title">JDPA Survey : Run survey on Jenkins</div>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="survey-name-form" role="form" ng-submit="">
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button style="width:77%" class="btn btn-default" ng-click="runConfiguration()">{{ runBtnStatus }}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div style="" id="save-alert" class="alert alert-danger col-sm-12">{{message}}</div>
+    </div>
+</div>
+

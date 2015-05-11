@@ -1,0 +1,59 @@
+<div class="row">
+    <!-- header part -->
+    <div class="col-xs-12 col-md-12">
+        <a href="#/generateForMobile" class="pull-right">
+            <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>&nbsp;Back
+        </a>
+    </div>
+</div>
+
+<div class="loginbox">
+    <div class="panel panel-info panel-info-testcase">
+        <div class="panel-heading">
+            <div class="panel-title">{{ surveyName }}</div>
+        </div>
+
+        <div class="panel-body">
+            <div class="col-sm-5">
+
+                <select class="form-control" name="surveyName" ng-change="surveyNameChange(option)" ng-model='option' ng-options='option as option for option in surveyNames'>
+                    <option value="">Select Survey</option>
+                </select>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="all" value="ALL"> All
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="ask" value="ASK"> Ask
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="end-to-end-for-all-questions" value="EToEForAllQuestions"> End To End For All Questions
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="end-to-end-for-specific-questions" value="EToEForSpecificQuestions"> End To End For Specific Questions
+                    </label>
+                </div>
+                <select class="form-control hide" name="specificQuestionsList" ng-model="questionCode" ng-options='questionCode as questionCode for questionCode in questionList'>
+                    <option value="">Select Question Code</option>
+                </select>
+
+            </div>
+            <div class="col-sm-7">
+                <p>
+                    <button style="" class="btn btn-lg btn-default" name="generateTestcaseBtn" ng-click="generateTestcase()">Generate TestCases</button>
+                </p>
+                <p>
+                    <div id="save-alert" class="alert alert-danger col-sm-12">{{message}}</div>
+                </p>
+            </div>
+        </div>
+        <!-- end of panel-body -->
+    </div>
+</div>

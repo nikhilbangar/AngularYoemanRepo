@@ -1,0 +1,238 @@
+<div class="row">
+    <div class="col-xs-12 col-md-12 btn-back">
+        <a href="#/file/Question" class="pull-right"><span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>&nbsp;Back</a>
+    </div>
+</div>
+
+<div class="row" style="margin-bottom:10px">
+    <div class="col-sm-12">
+        <button class="btn btn-primary add-question-btn" type="submit">Add Question | +</button>
+    </div>
+</div>
+
+<div class="question-panel-container">
+
+    <div class="row">
+        <!-- question panel -->
+        <div class="col-sm-8">
+            <div class="panel panel-info panel-question panel-info-question-web">
+                <div class="panel-heading">
+                    <div class="panel-title question-title-web "></div>
+                </div>
+
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-lg-2 col-sm-3 control-label">Question Code</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="question-code">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-lg-2 col-sm-3 control-label">Question</label>
+                            <div class="col-sm-9">
+                                <textarea id="question" class="form-control" rows="5" id="comment" style="width:100%" required></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-lg-2 col-sm-3 control-label"></label>
+                            <div class="col-sm-9">
+                                <div class="btn-group">
+                                <button type="button" class="btn btn-danger">ADD Element</button>
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span> </button>
+                                <ul class="dropdown-menu selectionType-dropdown" role="menu">
+                                    <li><a role="simple-radio-or-checkbox">SimpleRadioOrCheckbox</a>
+                                    </li>
+                                    <li><a role="simple-mixed">SimpleTextbox</a>
+                                    </li>
+                                    <li><a role="simple-mixed">SimpleMixed</a>
+                                    </li>
+                                    <li><a role="simple-dropdown">DropDown</a>
+                                    </li>
+                                    <li><a role="multi-dropdown">SimpleList</a>
+                                    </li>
+                                    <li><a role="single-grid-radio-or-checkbox">GridRadioOrCheckbox</a>
+                                    </li>
+                                    <li><a role="loyalty-grid">GridWithCombo</a>
+                                    </li>
+                                    <li><a role="grid-with-text">GridWithTextbox</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="btn-group simple-mixed-btn-group hide">
+                                <button type="button" class="btn btn-danger">ADD Mixed Element</button>
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span> </button>
+                                <ul class="dropdown-menu simplemix-dropdown" role="menu">
+                                    <li><a role="textbox">Textbox</a>
+                                    </li>
+                                    <li><a role="textarea">Textarea</a>
+                                    </li>
+                                    <li><a role="checkbox-or-radio">CheckboxOrRadio</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            </div>
+                        </div>    
+
+                        <div id="selection-type" class="response-container" selectionType=""></div>
+                    </form>
+                </div>
+                <!-- end of panel body -->
+            </div>
+            <!-- end of panel -->
+        </div>
+        <!-- prog panel -->
+        <div class="col-sm-4">
+            <div class="panel panel-info panel-info-prog-web">
+                <div class="panel-heading">
+                    <div class="panel-title">PROG</div>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal form-horizontal-prog-web">
+                        <div class="form-group prog-for-no-validation-container">
+                            <div class="col-sm-8">
+                                <div class="input-group" id="text-type">
+                                    <span class="input-group-addon" ng-click=""><input type="checkbox" name="prog-single-response" checked value="SINGLE RESPONSE">
+                            </span>
+                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2">Single Response</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group prog-for-no-validation-container">
+                            <div class="col-sm-8">
+                                <div class="input-group" id="text-type">
+                                    <span class="input-group-addon" ng-click=""><input type="checkbox" name="prog-fixed" checked value="FIXED">
+                            </span>
+                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2">Fixed</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group prog-for-no-validation-container">
+                            <div class="col-sm-8">
+                                <div class="input-group" id="text-type">
+                                    <span class="input-group-addon" ng-click=""><input type="checkbox" name="prog-forced" checked value="FORCED">
+                            </span>
+                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2">Forced</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group hide">
+                            <div class="col-sm-4">
+                                <button class="btn btn-default validation-prog-btn">Validation</button>
+                            </div>
+                            <div class="col-sm-4 validation-prog" style="display:none;">
+                                <div class="input-group">
+                                    <div class="input-group-addon">Min</div>
+                                    <input type="text" name="Min" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 validation-prog" style="display:none;">
+                                <div class="input-group">
+                                    <div class="input-group-addon">Max</div>
+                                    <input type="text" name="Max" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="padding:0 10px;">
+                            <fieldset>
+                                <legend style="margin-bottom:0px;">ASK</legend>
+                                <div class="checkbox">
+                                    <input type="radio" id="question-level-prog-ask-radio" name="mobile-prog-ask" checked value="question-level-prog">&nbsp;Question level
+                                    <div class="question-level-ask-container">
+                                        <div class="input-group col-sm-5 question-level-ask" style="margin-bottom:5px">
+                                            <span class="input-group-addon">ASK</span>
+                                            <input type="text" id="question-level-prog-ask" class="form-control" aria-describedby="basic-addon2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="checkbox response-level-prog-checkbox hide">
+                                    <input type="radio" name="mobile-prog-ask" value="response-level-prog">&nbsp;Response level
+                                </label>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group" style="padding:0 10px; position:relative;">
+                            <fieldset>
+                                <legend style="margin-bottom:10px;">ASK_Provider</legend>
+                                <div class="form-group" style="margin-bottom:5px">
+                                    <div class="col-sm-5" style="margin:0px">
+                                        <input type="text" id="question_ask_provider" class="form-control" placeholder="Question Code">
+                                    </div>
+                                    <div class="col-sm-5" style="margin:0px">
+                                        <input type="text" id="response_ask_provider" class="form-control" placeholder="Response Key">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group" id="ask-qn" style="padding:0 10px; position:relative;">
+                            <fieldset>
+                                <span class="glyphicon glyphicon-plus btn ask-qn-btn" aria-hidden="true" style="position:absolute; right:0px"></span>
+                                <legend style="margin-bottom:10px;">ASK_Qn</legend>
+
+                                <div class="form-group ask-qn-container" style="margin-bottom:5px">
+                                    <div class="col-sm-4" style="margin:0px">
+                                        <input type="text" class="form-control question-code" placeholder="Question Code">
+                                    </div>
+                                    <div class="col-sm-4" style="margin:0px">
+                                        <input type="text" class="form-control response-code" placeholder="Response Code">
+                                    </div>
+                                    <div class="col-sm-4" style="margin:0px">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><input type="checkbox" class="equal">
+                                        </span>
+                                            <label class="form-control" aria-describedby="basic-addon2">Equal</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group" style="padding:0 10px;">
+                            <fieldset>
+                                <legend style="margin-bottom:10px;">Condition</legend>
+                                <div class="form-inline">
+                                    <div class="form-group" style="margin:0px;">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><input type="radio" value="AND" name="prog-ask-condition">
+                                        </span>
+                                            <label class="form-control" aria-describedby="basic-addon2">AND</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="margin:0px;">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><input type="radio" value="OR" name="prog-ask-condition" checked>
+                                        </span>
+                                            <label class="form-control" aria-describedby="basic-addon2">OR</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- end of prog panel -->
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm-8 text-center">
+        <span class="btn btn-primary glyphicon glyphicon-circle-arrow-right" aria-hidden="true" ng-click="nextQuestion()"></span>
+        <span class="btn btn-primary glyphicon glyphicon-floppy-save" aria-hidden="true" ng-click="saveQuestion()"></span>
+    </div>
+</div>
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-sm-12">
+        <div style="" id="save-alert" class="alert alert-danger col-sm-12">{{message}}</div>
+    </div>
+</div>

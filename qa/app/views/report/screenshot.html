@@ -1,0 +1,20 @@
+<div class="jumbotron" style="margin:0 auto; padding-top:20px;">
+    <div class="page-header" style="margin:0px;">
+        <!-- screenshot for mobile -->
+        <div class="row" ng-show="isTwoImageUrl">
+            <div class="col-sm-6">
+                <h3><span class="label label-danger">Actual</span></h3>
+                    <a class="thumbnail"><img class="img-responsive" ng-src="screen_capture/{{ actualImageSrc }}" alt="actual thumbnail"></a>
+            </div>
+            <div class="col-sm-6">
+                <h3><span class="label label-success">Expected</span></h3>
+                    <a class="thumbnail"><img class="img-responsive" ng-src="screen_capture/{{ expectedImageSrc }}" alt="expected thumbnail"></a>
+                
+            </div>
+        </div>
+        <!-- screenshot for web  -->
+        <div class="row" ng-hide="isTwoImageUrl">
+        	<a class="thumbnail"><img class="img-responsive" ng-src="screen_capture/{{ actualImageSrc }}" alt="actual thumbnail"></a>
+        </div>
+    </div>
+</div>

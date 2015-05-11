@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-xs-12 col-md-12 btn-back">
+        <a href="#/file/Question" class="pull-right">
+            <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>&nbsp;Back
+        </a>
+    </div>
+</div>
+
+<div class="loginbox" style="padding-left:15%">
+    <div class="panel panel-info panel-info-filename">
+        <div class="panel-heading">
+            <div class="panel-title">Pending Survey For Web</div>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" id="survey-name-form" role="form" ng-submit="">
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-4 control-label">Survey Name: </label>
+                    <div class="col-sm-8">
+
+                        <select id="editSelect" class="form-control" ng-model="filename.name" ng-change="change()" name="filename.name">
+                            <option ng-repeat="name in surveyNames">{{ name }}</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-10">
+                        <a href="#/{{path}}" style="width:77%" class="btn btn-default btn-submit">Submit</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

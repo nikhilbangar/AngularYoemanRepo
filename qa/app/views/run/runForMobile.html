@@ -1,0 +1,389 @@
+<div class="col-12">
+    <div class="jumbotron">
+        <div class="row" ng-show="run_button_hide">
+            <div class="col-md-3 col-md-2-survey-name-container">
+                <select class="form-control">
+                    <option role="presentation" class="dropdown-header">Select Survey</option>
+                    <option ng-repeat="name in surveyNames track by $index">{{ name }}</option>
+                </select>
+            </div>
+            <!-- end of col-md-2 -->
+
+            <div class="col-md-12 show" style="margin-top:10px;">
+
+                <button class="btn btn-primary btn-mobile" type="button" data-toggle="collapse" data-target="#collapseMobilePanel" aria-expanded="false" aria-controls="collapseMobilePanel">Mobile</button>
+
+                <div id="collapseMobilePanel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                    <div class="panel-body">
+                        <div class="col-sm-4">
+                            <div class="panel panel-info panel-info-web testcase-container">
+                                <div class="panel-heading">
+                                    <div class="panel-title">
+                                        Testcases
+                                        <div class="pull-right">
+                                            <input type="checkbox" name="all-testcase-checkbox"> All
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="testcaseNamesContainer" style="max-height:222px; overflow:auto;">
+                                        <div ng-repeat="testcaseName in testcaseNames | filter:'!Survey Name' track by $index">
+                                            <input type="checkbox" value="{{ testcaseName }}"> {{ testcaseName }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end of Testcases panel -->
+                        </div>
+
+                        <div class="col-sm-8">
+                            <div class="panel panel-info panel-info-mobile">
+                                <div class="panel-heading">
+                                    <div class="panel-title">{{ surveyName }}</div>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-3 control-label">Driver Type : </label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" name="driver-type">
+                                                    <option value="webDriver">Single</option>
+                                                    <option value="grid">Parallel</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-4">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><input type="checkbox" name="compare-screen">
+                                                </span>
+                                                    <label class="form-control" aria-describedby="basic-addon2">Compare screen</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><input type="checkbox" name="test-controls">
+                                                </span>
+                                                    <label class="form-control" aria-describedby="basic-addon2">Test controls</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><input type="checkbox" name="take-screenshot">
+                                                </span>
+                                                    <label class="form-control" aria-describedby="basic-addon2">Take screenshot</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-mobile-webDriver">
+                                            <div class="table-responsive" style="overflow:auto;">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Platform</th>
+                                                            <th colspan="4">Versions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="radio" class="mobile-platform-android" name="mobile-platform" value="Android">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>Android</label>
+                                                                </div>
+                                                            </th>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="radio" name="mobile-android-version"  value="Android 5.0">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>5.0</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="radio" name="mobile-android-version"  value="Android 4.3">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>4.3</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="radio" name="mobile-android-version"  value="Android 4.2">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>4.2</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="radio" name="mobile-android-version"  value="Android 4.1">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>4.1</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th scope="row">
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="radio" class="mobile-platform-ios" name="mobile-platform" value="iOS">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>iOS</label>
+                                                                </div>
+                                                            </th>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="radio" name="mobile-ios-version"  value="iOS 8.1">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>8.1</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="radio" name="mobile-ios-version"  value="iOS 8.0">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>8.0</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="radio" name="mobile-ios-version"  value="iOS 7.1">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>7.1</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="radio" name="mobile-ios-version"  value="iOS 7.0">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>7.0</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- end of responsive table -->
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label">Device :</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control" name="device-name-select">
+                                                        <option ng-repeat="device in devices track by $index">{{ device }}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputPassword3" class="col-sm-3 control-label">Device Orientation : </label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control" name="device-orientation-select">
+                                                        <option value="portrait">Portrait</option>
+                                                        <option value="landscape">Landscape</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end of table-mobile-webDriver -->
+                                        
+                                        <div class="table-mobile-grid hide">
+                                            <div class="table-responsive" style="overflow:auto;">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Platform</th>
+                                                            <th colspan="4">Versions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="checkbox" class="mobile-platform-android" name="mobile-platform-checkbox" value="Android">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>Android</label>
+                                                                </div>
+                                                            </th>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="checkbox" name="mobile-android-version-checkbox" for="mobile-version-checkbox"  value="Android 5.0">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>5.0</label>
+                                                                </div>
+
+                                                                <select class="form-control" name="device-name-select">
+                                                                    <option value="device" class="dropdown-header">Device</option>
+                                                                    <option ng-repeat="device in androidDevices5_0 track by $index">{{ device }}</option>
+                                                                </select>
+                                                                <select class="form-control" name="device-orientation-select">
+                                                                    <option value="portrait">Portrait</option>
+                                                                    <option value="landscape">Landscape</option>
+                                                                </select>
+
+
+                                                            </td>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="checkbox" name="mobile-android-version-checkbox" for="mobile-version-checkbox"  value="Android 4.3">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>4.3</label>
+                                                                </div>
+                                                                <select class="form-control" name="device-name-select">
+                                                                    <option value="device" class="dropdown-header">Device</option>
+                                                                    <option ng-repeat="device in androidDevices4_3 track by $index">{{ device }}</option>
+                                                                </select>
+                                                                <select class="form-control" name="device-orientation-select">
+                                                                    <option value="portrait">Portrait</option>
+                                                                    <option value="landscape">Landscape</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="checkbox" name="mobile-android-version-checkbox" for="mobile-version-checkbox"  value="Android 4.2">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>4.2</label>
+                                                                </div>
+                                                                <select class="form-control" name="device-name-select">
+                                                                    <option value="device" class="dropdown-header">Device</option>
+                                                                    <option ng-repeat="device in androidDevices4_2 track by $index">{{ device }}</option>
+                                                                </select>
+                                                                <select class="form-control" name="device-orientation-select">
+                                                                    <option value="portrait">Portrait</option>
+                                                                    <option value="landscape">Landscape</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="checkbox" name="mobile-android-version-checkbox" for="mobile-version-checkbox"  value="Android 4.1">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>4.1</label>
+                                                                </div>
+                                                                <select class="form-control" name="device-name-select">
+                                                                    <option value="device" class="dropdown-header">Device</option>
+                                                                    <option ng-repeat="device in androidDevices4_1 track by $index">{{ device }}</option>
+                                                                </select>
+                                                                <select class="form-control" name="device-orientation-select">
+                                                                    <option value="portrait">Portrait</option>
+                                                                    <option value="landscape">Landscape</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th scope="row">
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="checkbox" class="mobile-platform-ios" name="mobile-platform-checkbox" value="iOS">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>iOS</label>
+                                                                </div>
+                                                            </th>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="checkbox" name="mobile-ios-version-checkbox" for="mobile-version-checkbox"  value="iOS 8.1">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>8.1</label>
+                                                                </div>
+                                                                <select class="form-control" name="device-name-select">
+                                                                    <option value="device">Device</option>
+                                                                    <option ng-repeat="device in iosDevices8_1 track by $index">{{ device }}</option>
+                                                                </select>
+                                                                <select class="form-control" name="device-orientation-select">
+                                                                    <option value="portrait">Portrait</option>
+                                                                    <option value="landscape">Landscape</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="checkbox" name="mobile-ios-version-checkbox" for="mobile-version-checkbox"  value="iOS 8.0">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>8.0</label>
+                                                                </div>
+                                                                <select class="form-control" name="device-name-select">
+                                                                    <option value="device">Device</option>
+                                                                    <option ng-repeat="device in iosDevices8_0 track by $index">{{ device }}</option>
+                                                                </select>
+                                                                <select class="form-control" name="device-orientation-select">
+                                                                    <option value="portrait">Portrait</option>
+                                                                    <option value="landscape">Landscape</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="checkbox" name="mobile-ios-version-checkbox" for="mobile-version-checkbox"  value="iOS 7.1">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>7.1</label>
+                                                                </div>
+                                                                <select class="form-control" name="device-name-select">
+                                                                    <option value="device">Device</option>
+                                                                    <option ng-repeat="device in iosDevices7_1 track by $index">{{ device }}</option>
+                                                                </select>
+                                                                <select class="form-control" name="device-orientation-select">
+                                                                    <option value="portrait">Portrait</option>
+                                                                    <option value="landscape">Landscape</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <div class="input-group" id="text-type">
+                                                                    <span class="input-group-addon"><input type="checkbox" name="mobile-ios-version-checkbox" for="mobile-version-checkbox"  value="iOS 7.0">
+                                                        </span>
+                                                                    <label class="form-control" name="textbox" aria-describedby="basic-addon2" required>7.0</label>
+                                                                </div>
+                                                                <select class="form-control" name="device-name-select">
+                                                                    <option value="device">Device</option>
+                                                                    <option ng-repeat="device in iosDevices7_0 track by $index">{{ device }}</option>
+                                                                </select>
+                                                                <select class="form-control" name="device-orientation-select">
+                                                                    <option value="portrait">Portrait</option>
+                                                                    <option value="landscape">Landscape</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- end of table-mobile-grid -->
+                                        
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                            </div>
+                                        </div>
+                                        <center>
+                                            <button type="button" class="btn btn-default" ng-click="save_mobile_configuration()">Save</button>
+                                        </center>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of mobile panel  -->
+            </div>
+            <!-- end of col-md-10 -->
+        </div>
+        <!-- end of row -->
+        <div class="row" ng-hide="run_button_hide">
+            <div class="col-xs-12 col-md-12 btn-back">
+                <a ng-click="showConfigurationPanel()" class="pull-right"><span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>&nbsp;Back</a>
+            </div>
+            <div class="panel panel-info panel-info-run">
+                <div class="panel-heading">
+                    <div class="panel-title">JDPA Survey : Run survey on Jenkins</div>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="survey-name-form" role="form" ng-submit="">
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button style="width:77%" class="btn btn-default" ng-click="runConfiguration()">{{ runBtnStatus }}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div style="" id="save-alert" class="alert alert-danger col-sm-12">{{message}}</div>
+    </div>
+</div>
+

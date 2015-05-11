@@ -1,0 +1,144 @@
+<div class="row" style="margin-bottom:10px">
+    <div class="col-sm-12">
+        <button class="btn btn-primary add-question-btn" type="submit">Add Question | +</button>
+    </div>
+</div>
+
+<div class="question-panel-container">
+
+    <div class="row">
+        <!-- question panel -->
+        <div class="col-sm-8">
+            <div class="panel panel-info panel-question panel-info-question-web">
+                <div class="panel-heading">
+                    <div class="panel-title question-title-web "></div>
+                </div>
+
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-lg-2 col-sm-3 control-label">Question Code</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="question-code">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-lg-2 col-sm-3 control-label">Question</label>
+                            <div class="col-sm-9">
+                                <textarea id="question" class="form-control" rows="5" id="comment" style="width:100%" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-lg-2 col-sm-3 control-label"></label>
+                            <div class="col-sm-9">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger">ADD Response</button>
+                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span> </button>
+                                    <ul class="dropdown-menu selectionType-dropdown" role="menu">
+                                        <li><a role="simple-radio-or-checkbox">SimpleRadioOrCheckbox</a>
+                                        </li>
+                                        <li><a role="simple-mixed">SimpleMixed</a>
+                                        </li>
+                                        <li><a role="simple-dropdown">SimpleDropDown</a>
+                                        </li>
+                                        <li><a role="multi-dropdown">MultiDropDown</a>
+                                        </li>
+                                        <li><a role="loyalty-grid">LoyaltyGrid</a>
+                                        </li>
+                                        <li><a role="osat-grid">OSATGrid</a>
+                                        </li>
+                                        <li><a role="standard-attribute-grid">StandardAttributeGrid</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="btn-group simple-mixed-btn-group hide">
+                                    <button type="button" class="btn btn-danger">ADD Mixed Element</button>
+                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span> </button>
+                                    <ul class="dropdown-menu simplemix-dropdown" role="menu">
+                                        <li><a role="textbox">Textbox</a>
+                                        </li>
+                                        <li><a role="textarea">Textarea</a>
+                                        </li>
+                                        <li><a role="checkbox-or-radio">CheckboxOrRadio</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="selection-type" class="response-container" selectionType=""></div>
+                    </form>
+                </div>
+                <!-- end of panel body -->
+            </div>
+            <!-- end of panel -->
+        </div>
+        <!-- prog panel -->
+        <div class="col-sm-4">
+            <div class="panel panel-info panel-info-prog-web">
+                <div class="panel-heading">
+                    <div class="panel-title">Prog</div>
+                </div>
+                <div class="panel-body" style="padding-top:0px;padding-bottom:0px;">
+                    <form class="form-horizontal form-horizontal-prog-web">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="prog-single-response" checked value="SINGLE RESPONSE"> Single Response
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="prog-fixed" checked value="FIXED"> Fixed
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="prog-forced" checked value="FORCED"> Forced
+                            </label>
+                        </div>
+
+                        <div class="dropdown clearfix" style="margin:10px 0px;">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-expanded="true">
+                                Ask
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu ask-dropdown-menu" role="menu" aria-labelledby="dropdownMenu4">
+                                <li role="presentation"><a role="menuitem" name="response-level-ask" tabindex="-1">Response Level Ask</a>
+                                </li>
+                                <li role="presentation"><a role="menuitem" name="ask-if" tabindex="-1">Ask If</a>
+                                </li>
+                                <li role="presentation"><a role="menuitem" name="question-depend-on" tabindex="-1">Question Depend On</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="ask-container"></div>
+
+                </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end of prog panel -->
+</div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm-8 text-center">
+        <span class="btn btn-primary glyphicon glyphicon-circle-arrow-right" aria-hidden="true" ng-click="nextQuestion()"></span>
+        <span class="btn btn-primary glyphicon glyphicon-floppy-save" aria-hidden="true" ng-click="saveQuestion()"></span>
+        <button class="btn btn-primary" type="submit" ng-click="saveQuestionPartially()">Save Partially</button>
+    </div>
+</div>
+
+<div class="row" style="margin-top:10px;">
+    <div class="col-sm-12">
+        <div style="" id="save-alert" class="alert alert-danger col-sm-12">{{message}}</div>
+    </div>
+</div>

@@ -1,0 +1,165 @@
+<div class="col-12">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-3" style="padding-left:0px">
+                <select class="form-control" ng-model="name" ng-change="changeReportSelect(name)" ng-options="name for name in reportNames">
+                    <option role="presentation" class="dropdown-header" value="">SELECT REPORT</option>
+                </select>
+            </div>
+
+            <div class="col-sm-12" style="margin-top:21px">
+                <div class="row report-web-platform">
+                    <div class="col-sm-4 platform-btn-container" style="padding-left:0px;" ng-repeat="platform in platforms">
+                        <a class="btn btn-default form-control current" ng-click="getReportBrowserDetails(platform)" style="font-size:16px">{{ platform }}</a>
+                    </div>
+                </div>
+                <div class="row report-web-browser-tab-container hide">
+                    <ul id="myTab" class="nav nav-tabs" role="tablist">
+                        <li role="presentation" ng-repeat="browser in browsers" ng-class="{active:isActiveTab(browser)}" ng-click="onClickTab(browser)"><a id="home-tab" role="tab" data-toggle="tab" data-target="#{{browser}}" aria-controls="home" aria-expanded="true">{{ browser }}</a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content" style="padding-top: 16px;">
+                        <div role="tabpanel" class="tab-pane fade active in" id="{{currentTab}}">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div data-brackets-id="475" class="panel-stat2 info-box info" ng-click="getTotalTestcases()">
+                                        <i data-brackets-id="476" class=""><img
+									data-brackets-id="477" src="images/total.png" width="52"
+									height="52"></i>
+                                        <div data-brackets-id="478" class="value">{{ totalTestcases }}</div>
+                                        <div data-brackets-id="479" class="title">Total tests</div>
+                                        <div data-brackets-id="480" class="desc" align="left">
+                                            <b data-brackets-id="481">{{ centTotalTestcases  }}%</b>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div data-brackets-id="483" class="panel-stat2 info-box success" ng-click="getTotalPassedTestcases()">
+                                        <i data-brackets-id="484" class=""><img
+									data-brackets-id="485" src="images/passed.png" width="52"
+									height="52"></i>
+                                        <div data-brackets-id="486" class="value">{{ passedTestcases }}</div>
+                                        <div data-brackets-id="487" class="title">Passed tests</div>
+                                        <div data-brackets-id="488" class="desc" align="left">
+                                            <b data-brackets-id="489">{{ centPassedTestcases | number:0 }}%</b>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div data-brackets-id="491" class="panel-stat2 info-box danger" ng-click="getTotalFailedTestcases()">
+                                        <i data-brackets-id="492" class=""><img
+									data-brackets-id="493" src="images/failed.png" width="52"
+									height="52"></i>
+                                        <div data-brackets-id="494" class="value">{{ failedTestcases }}</div>
+                                        <div data-brackets-id="495" class="title">Failed Tests</div>
+                                        <div data-brackets-id="496" class="desc" align="left">
+                                            <b data-brackets-id="497">{{ centFailedTestcases | number:0 }}%</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of myTabContent-->
+                    <div class="row">
+                        <div class="panel panel-info panel-info-report">
+                            <div class="panel-heading text-center">
+                                <h3 class="panel-title">
+							<b>Test Result</b>
+						</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-lg-12">
+                                    <div class="row center-block">
+                                        <div class="col-sm-1">
+                                            <label>Start Time</label>
+                                        </div>
+                                        <div class="col-sm-3">{{ startTime }}</div>
+                                        <div class="col-sm-1">
+                                            <label>End Time</label>
+                                        </div>
+                                        <div class="col-sm-3">{{ endTime }}</div>
+                                        <div class="col-sm-2">
+                                            <label>Build Number</label>
+                                        </div>
+                                        <div class="col-sm-2">{{ buildNo }}</div>
+                                    </div>
+                                    <table id="totalTable" class="table table-striped table-bordered bootstrap-datatable datatable dataTable no-footer table-responsive" role="grid" aria-describedby="DataTables_Table_0_info">
+                                        <thead style="background: #01579b; color: #fff">
+                                            <tr role="row">
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px; text-align: center" aria-label="Username: activate to sort column ascending">S.no
+                                                </th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 500px; text-align: center" aria-sort="ascending" aria-label="Username: activate to sort column ascending">Test Cases
+                                                </th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 500px; text-align: center" aria-sort="ascending" aria-label="Username: activate to sort column ascending">Time
+                                                </th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 500px; text-align: center" aria-sort="ascending" aria-label="Username: activate to sort column ascending">Status
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="" role="row" ng-repeat="testcase in testcases">
+                                                <td class="sorting_1" style="text-align: center">{{ $index + 1 }}</td>
+                                                <td class="sorting_1">{{ testcase.TC }}</td>
+                                                <td style="text-align: center">{{ testcase.Duration }}</td>
+                                                <td style="text-align: center"><span class="label status" data-target="#teststep-modal" data-toggle="modal" ng-class="getClass(testcase.Status)" ng-click="getModalForTeststapes(testcase.Status,testcase.TestSteps)">{{
+												testcase.Status }}</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of row -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Starts Here -->
+<div class="modal fade bs-example-modal-lg" id="teststep-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="margin:auto;width:66%;">
+        <div class="modal-content">
+            <div class="modal-header" ng-class="setHeaderBackgroundColor" align="center">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
+                </button>
+                <div class="reporter-method-div" style="color: #f8f8f8">
+                    <span align="center"><b>Teststeps</b></span>
+                </div>
+            </div>
+            <div class='modal-body'>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Step</th>
+                            <th>Status</th>
+                            <th>Expected</th>
+                            <th>Actual</th>
+                            <th ng-show="Status==='failed'">Screen Capture</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="teststep in steps" ng-class="setRowBackgroundColorForFailed(teststep.status)">
+                            <th scope="row" style="min-width: 200px">{{ teststep.step }}</th>
+                            <td>{{ teststep.status }}</td>
+                            <td>{{ teststep.expectedData }}</td>
+                            <td style="min-width: 200px">{{ teststep.actualData}}</td>
+                            <td>
+                                <p>
+                                    <a class="btn btn-xs btn-primary" href="#/viewScreenshot/{{teststep.ImageUrl}},{{teststep.actualImageUrl}},{{teststep.expectedImageUrl}}" ng-show="teststep.status==='Failed'" target="_blank">view</a>
+                                </p>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer"></div>
+
+        </div>
+    </div>
+</div>
